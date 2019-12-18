@@ -6,26 +6,28 @@ var ranLetter = ranLetter;
 var letters = "abcdefghijklmnopqrstuvwxyz";
 
 
-var ranLetter = letters[Math.floor(Math.random() * letters.length)];
+var pcGuess = letters[Math.floor(Math.random() * letters.length)];
 
-console.log(ranLetter);
+console.log(pcGuess);
 
 function pcGuess() {
     ranLetter = letters[Math.floor(Math.random() * letters.length)];
     console.log(ranLetter);
+    
 }
 
 
-document.onkeyup = function (event) {
+document.onkeyup = function(event) {
     var userChoice = event.key;
-    
-    if (userChoice === ranLetter) {
+    console.log(userChoice)
+
+    if (userChoice === pcGuess) {
         wins++;
         guessesLeft = 9;
         guessesSoFar = [];
     }
 
-    if (userChoice !== ranletter) {
+    if (userChoice !== pcGuess) {
         guessesLeft--;
     }
 
@@ -33,6 +35,7 @@ document.onkeyup = function (event) {
         losses++;
         guessesSoFar = [];
         guessesLeft = 9;
+        
     }
 
     if (guessesSoFar.indexOf(userChoice) >= 0) {
@@ -41,11 +44,12 @@ document.onkeyup = function (event) {
 
     } else {
         guessesSoFar.push(guessesLeft)
-        document.getElementById("guessSoFar").innerHTML = guessesLeft;
+        document.getElementById("guessesLeft").innerHTML = "Guesses Left:";
         console.log(guessesSoFar);
     }
-
-    document.getElementById("win").innerHTML = win;
-    document.getElementById("losses").innerHTML = losses;
-    document.getElementById("yourGuessesLeft").innerHTML = guessesLeft;
-} 
+    
+    document.getElementById("win").innerHTML = "Wins:" + wins;
+    document.getElementById("losses").innerHTML = "Losses:" + losses ;
+    document.getElementById("guessesLeft").innerHTML = "Guesses Left:" + guessesLeft ;
+    document.getElementById("guessesSoFar").innerHTML = "Your Guesses So Far:" + userChoice;
+}   
